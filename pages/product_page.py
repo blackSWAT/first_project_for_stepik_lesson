@@ -16,3 +16,11 @@ class ProductPage(BasePage):
         sum_in_product = self.browser.find_element(*CartPageLocators.SUM_IN_PRODUCT).text
         assert sum_in_product == sum_in_basket, f'''Price in basket:{sum_in_basket} not equal price product: 
                                                 {sum_in_product}'''
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*CartPageLocators.SUCCESS_MESSAGE),\
+            "Success message is presented, but should not be"
+
+    def should_be_success_message(self):
+        assert self.is_element_present(*CartPageLocators.SUCCESS_MESSAGE),\
+            "Success message not presented, but should be"

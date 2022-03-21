@@ -16,3 +16,4 @@ class CartPageLocators:
     BOOK_NAME = (By.CSS_SELECTOR, "div.product_main > h1")
     SUM_IN_BASKET = (By.CSS_SELECTOR, "div.alert-info strong")
     SUM_IN_PRODUCT = (By.CSS_SELECTOR, "p.price_color")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "div#messages")
