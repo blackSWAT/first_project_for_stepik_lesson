@@ -20,4 +20,3 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.add_to_cart()
     page.should_be_success_message()
     page.check_message_and_price()
-    time.sleep(500)
