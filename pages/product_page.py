@@ -24,3 +24,7 @@ class ProductPage(BasePage):
     def should_be_success_message(self):
         assert self.is_element_present(*CartPageLocators.POPUP_ADD_CART),\
             "Success message not presented, but should be"
+
+    def should_not_be_success_message_other(self):
+        assert self.is_disappeared(*CartPageLocators.POPUP_ADD_CART), \
+            "Success message is presented, but should not be"
