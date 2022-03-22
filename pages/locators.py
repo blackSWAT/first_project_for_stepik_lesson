@@ -17,6 +17,13 @@ class CartPageLocators:
     SUM_IN_BASKET = (By.CSS_SELECTOR, "div.alert-info strong")
     SUM_IN_PRODUCT = (By.CSS_SELECTOR, "p.price_color")
 
+
 class BasePageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    BASKET_PAGE = (By.CSS_SELECTOR, "span.btn-group > a.btn")
+
+
+class BasketPageLocators:
+    BASKET_WITH_PRODUCT = (By.CSS_SELECTOR, "div.basket-items")
+    BASKET_EMPTY = (By.CSS_SELECTOR, "div#content_inner > p > a")
