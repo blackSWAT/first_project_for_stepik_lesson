@@ -1,6 +1,7 @@
 import pytest
-
+import time
 from pages.basket_page import BasketPage
+from pages.login_page import LoginPage
 from .pages.product_page import ProductPage
 
 link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
@@ -66,3 +67,29 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.open_basket()
     basket_page = BasketPage(browser=browser, url=browser.current_url)
     basket_page.check_basket()
+
+
+class TestUserAddToBasketFromProductPage():
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        page = ProductPage(browser=browser, url=link)
+        page.open()
+        page.go_to_login_page()
+        page1 = LoginPage(browser=browser, url=link)
+        email = str(time.time()) + "@fakemail.org"
+        page1.register_new_user(email=email, password="Y2zdljftjL")
+
+    def test_user_cant_see_success_message(self, browser):
+        page = ProductPage(browser=browser, url=link)
+        page.open()  # открываем страницу
+        page.should_not_be_success_message()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        page = ProductPage(browser=browser, url=link)
+        page.open()  # открываем страницу
+        page.should_not_be_success_message()
+        page.add_to_cart_without_quiz()
+        page.should_be_success_message()
+        page.check_message_and_price()

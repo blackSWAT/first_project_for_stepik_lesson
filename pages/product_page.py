@@ -8,6 +8,10 @@ class ProductPage(BasePage):
         link.click()
         self.solve_quiz_and_get_code()
 
+    def add_to_cart_without_quiz(self):
+        link = self.browser.find_element(*CartPageLocators.BASKET)
+        link.click()
+
     def check_message_and_price(self):
         text = self.browser.find_element(*CartPageLocators.POPUP_ADD_CART).text
         book_name = self.browser.find_element(*CartPageLocators.BOOK_NAME).text
